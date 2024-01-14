@@ -1,8 +1,6 @@
 package org.example;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,31 +8,24 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-@Component
-public class Parser {
+public class InitParser implements EnvParser {
 
-//    @Value("${app.root}")
-    private String path = "src/main/resources/default-contacts.txt";
+    @Value("${app.root}")
+    private String path;
 
-    public Parser() {
-    }
-
-
-    public void write(Storage storage){
-        try(FileWriter writer = new FileWriter(path, false))
-        {
-            for(Contact contact : storage.getAllContacts()){
+    public void write(Storage storage) {
+        try (FileWriter writer = new FileWriter(path, false)) {
+            for (Contact contact : storage.getAllContacts()) {
                 String text = contact.toString();
                 writer.write(text + "\n");
             }
             writer.flush();
-        }
-        catch(IOException ex){
+        } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
 
-    public void read(Storage storage){
+    public void read(Storage storage) {
         try {
             File file = new File(path);
             Scanner scanner = new Scanner(file);

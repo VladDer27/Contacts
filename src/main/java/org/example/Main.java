@@ -23,7 +23,7 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(DefaultAppConfig.class);
         Storage storage = context.getBean(Storage.class);
-        Parser parser = context.getBean(Parser.class);
+        EnvParser parser = context.getBean(EnvParser.class);
         parser.read(storage);
         Scanner scanner = new Scanner(System.in);
 
@@ -41,7 +41,7 @@ public class Main {
                 case "1": {
                     System.out.println("Ваши контакты: ");
                     if (storage.getAllContacts().isEmpty()) System.out.println("Ваш список контактов пуст!");
-                    for(Contact contact : storage.getAllContacts())
+                    for (Contact contact : storage.getAllContacts())
                         System.out.println(contact);
                     break;
                 }
