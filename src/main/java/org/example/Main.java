@@ -23,8 +23,6 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext context = new AnnotationConfigApplicationContext(DefaultAppConfig.class);
         Storage storage = context.getBean(Storage.class);
-        EnvParser parser = context.getBean(EnvParser.class);
-        parser.read(storage);
         Scanner scanner = new Scanner(System.in);
 
         boolean work = true;
@@ -80,7 +78,6 @@ public class Main {
                     break;
                 }
                 case "4": {
-                    parser.write(storage);
                     work = false;
                     break;
                 }
