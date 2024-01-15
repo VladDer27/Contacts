@@ -64,11 +64,7 @@ public class Main {
                         System.out.println("Неправильно введена почта!");
                         break;
                     }
-                    Contact contact = context.getBean(Contact.class);
-                    contact.setFullName(data[0]);
-                    contact.setPhoneNumber(data[1]);
-                    contact.setEmail(data[2]);
-                    System.out.println(storage.add(contact) ? "Добавлен новый контакт!" : "Ошибка добавления нового контакта!");
+                    System.out.println(storage.add(new Contact(data[0], data[1], data[2])) ? "Добавлен новый контакт!" : "Ошибка добавления нового контакта!");
                     break;
                 }
                 case "3": {
